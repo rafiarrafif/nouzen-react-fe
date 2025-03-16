@@ -17,9 +17,9 @@ jobs:
       - name: Deploy to beta channel
         uses: appleboy/drone-ssh@v1.0.1
         with:
-          host: ${{ secrets.SSH_HOST_BETA }}
-          username: ${{ secrets.SSH_USERNAME_BETA }}
-          key: ${{ secrets.SSH_PRIVATE_KEY_BETA }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
             export PATH=$PATH:/www/server/nodejs/v20.18.0/bin
@@ -41,9 +41,9 @@ jobs:
       - name: Deploy to main channel and all users
         uses: appleboy/drone-ssh@v1.0.1
         with:
-          host: ${{ secrets.SSH_HOST_PROD }}
-          username: ${{ secrets.SSH_USERNAME_PROD }}
-          key: ${{ secrets.SSH_PRIVATE_KEY_PROD }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
             export PATH=$PATH:/www/server/nodejs/v20.18.0/bin
