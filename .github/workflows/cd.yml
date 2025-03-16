@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Deploy to beta channel
-        uses: appleboy/drone-ssh@v1.0.1
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -39,7 +39,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Deploy to main channel and all users
-        uses: appleboy/drone-ssh@v1.0.1
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
