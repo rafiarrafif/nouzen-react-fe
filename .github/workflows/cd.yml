@@ -1,0 +1,56 @@
+name: cd
+
+on:
+  push:
+    branches:
+      - testing
+      - main
+
+jobs:
+  deploy-beta:
+    if: ${{ github.ref == 'refs/heads/testing' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy to beta channel
+        uses: appleboy/drone-ssh@v1.0.1
+        with:
+          host: ${{ secrets.SSH_HOST_BETA }}
+          username: ${{ secrets.SSH_USERNAME_BETA }}
+          key: ${{ secrets.SSH_PRIVATE_KEY_BETA }}
+          port: 22
+          script: |
+            export PATH=$PATH:/www/server/nodejs/v20.18.0/bin
+            cd ../www/wwwroot/beta.astofo.com
+            git pull origin testing
+            git status
+            npm install
+            npm run build
+            pm2 reload astofo-beta
+            pm2 restart astofo-beta
+
+  deploy-production:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploy to main channel and all users
+        uses: appleboy/drone-ssh@v1.0.1
+        with:
+          host: ${{ secrets.SSH_HOST_PROD }}
+          username: ${{ secrets.SSH_USERNAME_PROD }}
+          key: ${{ secrets.SSH_PRIVATE_KEY_PROD }}
+          port: 22
+          script: |
+            export PATH=$PATH:/www/server/nodejs/v20.18.0/bin
+            cd ../www/wwwroot/www.astofo.com
+            git pull origin main
+            git status
+            npm install
+            npm run build
+            pm2 reload astofo-prod
+            pm2 restart astofo-prod
