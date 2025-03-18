@@ -23,13 +23,14 @@ jobs:
           port: 22
           script: |
             export PATH=$PATH:/www/server/nodejs/v20.18.0/bin
-            cd ../www/wwwroot/beta.astofo.com
+            cd ../www/www.astofo.com
             git pull origin testing
             git status
             npm install
             npm run build
             pm2 reload astofo-beta
             pm2 restart astofo-beta
+            systemctl reload nginx
 
   deploy-production:
     if: ${{ github.ref == 'refs/heads/main' }}
@@ -47,10 +48,11 @@ jobs:
           port: 22
           script: |
             export PATH=$PATH:/www/server/nodejs/v20.18.0/bin
-            cd ../www/wwwroot/www.astofo.com
+            cd ../www/www.astofo.com
             git pull origin main
             git status
             npm install
             npm run build
             pm2 reload astofo-prod
             pm2 restart astofo-prod
+            systemctl reload nginx
