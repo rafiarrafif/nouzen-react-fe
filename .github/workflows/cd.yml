@@ -22,7 +22,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            export PATH=$PATH:/www/server/nodejs/v20.18.0/bin
+            export PATH=$PATH:/run/user/0/fnm_multishells/29485_1742331785263/bin
             cd ../www/www.astofo.com
             git pull origin testing
             git status
@@ -47,7 +47,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            export PATH=$PATH:/www/server/nodejs/v20.18.0/bin
+            export PATH=$PATH:/run/user/0/fnm_multishells/29485_1742331785263/bin
             cd ../www/www.astofo.com
             git pull origin main
             git status
