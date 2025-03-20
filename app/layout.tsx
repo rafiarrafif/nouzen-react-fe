@@ -1,6 +1,7 @@
 import "./globals.css";
 import HeroUIWrapper from "./providers/heroUI";
 import ManropeFontProvider from "./providers/manropeFont";
+import NextTopLoader from "nextjs-toploader";
 
 export default function RootLayout({
   children,
@@ -10,6 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={``}>
+        <NextTopLoader easing="ease" showSpinner={false} />
         <ManropeFontProvider>
           <HeroUIWrapper>{children}</HeroUIWrapper>
         </ManropeFontProvider>

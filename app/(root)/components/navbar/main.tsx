@@ -94,7 +94,7 @@ export default function nav() {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              className="w-full"
+              className="w-full "
               color={
                 index === 2
                   ? "primary"
