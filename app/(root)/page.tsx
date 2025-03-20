@@ -15,7 +15,11 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <div className="mt-[-6vh]">
-      <div className="w-full h-[86vh] overflow-hidden" id="jumbotronVideo">
+      <div
+        className="w-full h-[86vh] relative overflow-hidden"
+        id="jumbotronVideo"
+      >
+        <div className="absolute z-10 bottom-0 w-full h-72 bg-gradient-to-b from-transparent to-black" />
         <JumbotronVideo />
       </div>
     </div>
