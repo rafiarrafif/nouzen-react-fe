@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={``}>
-        <NextTopLoader easing="ease" showSpinner={false} />
+        <NextTopLoader easing="ease" showSpinner={false} color="#E50914" />
         <ManropeFontProvider>
           <HeroUIWrapper>{children}</HeroUIWrapper>
         </ManropeFontProvider>
