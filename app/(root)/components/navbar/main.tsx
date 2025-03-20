@@ -12,6 +12,7 @@ import {
   Link,
   Button,
 } from "@heroui/react";
+import { usePathname } from "next/navigation";
 
 export const AcmeLogo = () => {
   return (
@@ -27,8 +28,15 @@ export const AcmeLogo = () => {
 };
 
 export default function nav() {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const pathname = usePathname();
+  const navItems = [
+    { name: "Home", href: "/" },
+    { name: "Season", href: "/season" },
+    { name: "Movies", href: "/movies" },
+    { name: "Trending", href: "/trending" },
+  ];
 
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const menuItems = [
     "Profile",
     "Dashboard",
@@ -43,7 +51,7 @@ export default function nav() {
   ];
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar onMenuOpenChange={setIsMenuOpen} maxWidth="full" height={54}>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -55,29 +63,29 @@ export default function nav() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link aria-current="page" href="#">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
+      <NavbarContent className="hidden sm:flex gap-6" justify="center">
+        {navItems.map((item) => {
+          const isActive = pathname === item.href;
+          return (
+            <NavbarItem key={item.href} isActive={isActive}>
+              <Link
+                href={item.href}
+                {...(!isActive && { color: "foreground" })}
+              >
+                {item.name}
+              </Link>
+            </NavbarItem>
+          );
+        })}
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
+          <Link className="font-semibold" href="#">
+            Login
+          </Link>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
+          <Button as={Link} color="primary" href="#" variant="solid">
             Sign Up
           </Button>
         </NavbarItem>

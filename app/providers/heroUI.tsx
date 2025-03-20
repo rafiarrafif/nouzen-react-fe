@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { HeroUIProvider } from "@heroui/react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { useRouter } from "next/navigation";
 
 export default function HeroUIWrapper({
   children,
@@ -12,8 +13,10 @@ export default function HeroUIWrapper({
     setMounted(true);
   }, []);
 
+  const router = useRouter();
+
   return (
-    <HeroUIProvider>
+    <HeroUIProvider navigate={router.push}>
       {mounted ? (
         <NextThemesProvider attribute="class" defaultTheme="dark">
           <main>{children}</main>
