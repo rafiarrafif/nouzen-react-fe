@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import React from "react";
+import JumbotronVideo from "./components/home/jumbotronHome/jumbotronVideo";
 
 export const metadata: Metadata = {
   title: "Astofo - Streaming Anime",
@@ -12,7 +13,13 @@ export const metadata: Metadata = {
   },
 };
 const page = () => {
-  return <div>Hello Wolrd</div>;
+  return (
+    <div className="mt-[-6vh]">
+      <div className="w-full h-[86vh] overflow-hidden" id="jumbotronVideo">
+        <JumbotronVideo />
+      </div>
+    </div>
+  );
 };
 
 export default page;
