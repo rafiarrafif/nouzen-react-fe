@@ -13,6 +13,7 @@ import {
   Button,
 } from "@heroui/react";
 import { usePathname } from "next/navigation";
+import NavbarProfile from "./profiles/sessionWrapper";
 
 export const AcmeLogo = () => {
   return (
@@ -79,16 +80,7 @@ export default function nav() {
         })}
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link className="font-semibold" href="#">
-            Login
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="solid">
-            Sign Up
-          </Button>
-        </NavbarItem>
+        <NavbarProfile />
       </NavbarContent>
       <NavbarMenu>
         {menuItems.map((item, index) => (

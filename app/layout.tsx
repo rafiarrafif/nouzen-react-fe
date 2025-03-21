@@ -2,6 +2,7 @@ import "./globals.css";
 import HeroUIWrapper from "./providers/heroUI";
 import ManropeFontProvider from "./providers/manropeFont";
 import NextTopLoader from "nextjs-toploader";
+import { SessionProvider } from "next-auth/react";
 
 export default function RootLayout({
   children,
@@ -11,10 +12,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={``}>
-        <NextTopLoader easing="ease" showSpinner={false} color="#E50914" />
-        <ManropeFontProvider>
-          <HeroUIWrapper>{children}</HeroUIWrapper>
-        </ManropeFontProvider>
+        <SessionProvider>
+          <NextTopLoader easing="ease" showSpinner={false} color="#E50914" />
+          <ManropeFontProvider>
+            <HeroUIWrapper>{children}</HeroUIWrapper>
+          </ManropeFontProvider>
+        </SessionProvider>
       </body>
     </html>
   );
