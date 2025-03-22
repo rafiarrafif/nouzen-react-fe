@@ -1,10 +1,4 @@
-import {
-  Badge,
-  Button,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@heroui/react";
+import { Button, Popover, PopoverTrigger } from "@heroui/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import React from "react";
 import NotificationContent from "./notificationContent";

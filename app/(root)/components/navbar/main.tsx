@@ -10,7 +10,6 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   Link,
-  Button,
 } from "@heroui/react";
 import { usePathname } from "next/navigation";
 import NavbarProfile from "./profiles/sessionWrapper";
@@ -28,7 +27,7 @@ export const AcmeLogo = () => {
   );
 };
 
-export default function nav() {
+export default function Nav() {
   const pathname = usePathname();
   const navItems = [
     { name: "Home", href: "/" },

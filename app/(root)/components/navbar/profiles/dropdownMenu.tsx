@@ -10,7 +10,7 @@ import React from "react";
 import { signOut, useSession } from "next-auth/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
-const dropdownMenu = () => {
+const NavDropdownMenu = () => {
   const { data: session } = useSession();
 
   if (!session || !session.user) return null;
@@ -137,4 +137,4 @@ const dropdownMenu = () => {
   );
 };
 
-export default dropdownMenu;
+export default NavDropdownMenu;
